@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rovin® — Python Backend Developer</title>
+<meta name="description" content="Rovin — Python backend developer building scalable systems with Django, DRF, PostgreSQL, Redis and Docker.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<header>
+  <nav class="nav">
+    <a class="logo" href="#top">Rovin<sup>®</sup></a>
+    <ul class="nav-links">
+      <li><a href="#top" class="active">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work <small>(02)</small></a></li>
+      <li><a href="#skills">Skills <small>(06)</small></a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#top">Home</a>
+  <a href="#about">About</a>
+  <a href="#work">Work</a>
+  <a href="#skills">Skills</a>
+  <a href="#contact">Contact</a>
+  <p class="mono-note">✳ Python backend developer — Bangalore, India</p>
+</div>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <span class="hero-grid-line hgl-v1"></span>
+  <span class="hero-grid-line hgl-v2"></span>
+  <span class="hero-grid-line hgl-h1"></span>
+  <span class="hero-grid-line hgl-h2"></span>
+  <span class="cross" style="top:21.5%;left:13.6%"></span>
+  <span class="cross" style="top:21.5%;right:13.6%"></span>
+  <span class="cross" style="bottom:23.5%;left:13.6%"></span>
+  <span class="cross" style="bottom:23.5%;right:13.6%"></span>
+
+  <div class="ghost" aria-hidden="true">ROVIN</div>
+
+  <p class="hero-tag">I build scalable backend systems that are fast, reliable and clean</p>
+
+  <!-- Swap this terminal for your photo if you prefer: replace the div with <img src="you.jpg"> -->
+  <div class="hero-terminal" aria-hidden="true">
+    <div class="dots"><i class="d1"></i><i class="d2"></i><i class="d3"></i></div>
+    <div class="ln"><span class="cm"># rovin.py</span></div>
+    <div class="ln"><span class="kw">class</span> <span class="fn">BackendDeveloper</span>:</div>
+    <div class="ln">    name = <span class="st">"Rovin"</span></div>
+    <div class="ln">    stack = [<span class="st">"python"</span>, <span class="st">"django"</span>, <span class="st">"drf"</span>]</div>
+    <div class="ln">    db = [<span class="st">"postgresql"</span>, <span class="st">"redis"</span>]</div>
+    <div class="ln">    status = <span class="st">"open_to_work"</span><span class="type-caret"></span></div>
+  </div>
+
+  <a class="hero-project" href="#work" aria-label="View QuickSync project">
+    <div class="thumb"></div>
+    <div class="cap"><b>QUICKSYNC</b><span>/Backend Platform</span></div>
+  </a>
+
+  <div class="hero-inner">
+    <p class="hero-copy">©<span id="year">2026</span></p>
+    <div class="hero-bottom">
+      <h1 class="hero-name">Rovin</h1>
+      <a class="lets-talk" href="#contact">
+        <span class="ast">✳</span>
+        <span class="avatar">R</span>
+        <span class="meta">
+          <small>Let's talk</small>
+          <b>Rovin</b>
+          <span>Python Backend Developer</span>
+        </span>
+        <span class="go">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TECH MARQUEE ================= -->
+<div class="strip">
+  <p class="label">Powered by<br>a solid stack</p>
+  <div class="marquee">
+    <div class="marquee-track" id="marqueeTrack">
+      <span>Python</span><span>Django</span><span>DRF</span><span>PostgreSQL</span>
+      <span>Redis</span><span>Docker</span><span>REST APIs</span><span>Linux</span>
+      <span>Git</span><span>Pytest</span><span>MySQL</span><span>Webhooks</span>
+    </div>
+  </div>
+</div>
+
+<!-- ================= ABOUT / IMPACT ================= -->
+<section id="about">
+  <div class="wrap">
+    <div class="impact-head rv">
+      <div>
+        <span class="pill"><span class="ast">✳</span> Reliable backend journeys.</span>
+        <h2 class="h-giant">My impact<br>through <span class="dim">clean<br>architecture</span></h2>
+      </div>
+      <p class="impact-side">I'm a Python backend developer focused on building scalable and maintainable web applications — designing clean architectures, solving complex problems, and integrating systems that just work.</p>
+    </div>
+
+    <div class="impact-grid">
+      <div class="stat-card rv">
+        <p class="tag">Backend engineering</p>
+        <p class="big">API↗</p>
+        <p>Specialized in Django, DRF, REST API design, authentication, third-party integrations and webhooks.</p>
+      </div>
+      <div class="stat-card rv">
+        <p class="tag">Code quality</p>
+        <p class="big">100%</p>
+        <p>Committed to clean, maintainable code — OOP, SOLID principles, design patterns, and thorough testing with Pytest.</p>
+      </div>
+      <div class="stat-card dark rv">
+        <p class="tag">Currently exploring</p>
+        <p>Levelling up every single day across systems and infrastructure.</p>
+        <div class="chips">
+          <span>Advanced Django</span><span>System Design</span><span>Microservices</span><span>Cloud</span><span>DevOps</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section class="skills" id="skills">
+  <div class="wrap">
+    <div class="rv">
+      <span class="pill"><span class="ast">✳</span> Technical arsenal.</span>
+      <h2 class="h-giant">Tools of<br><span class="dim">the trade</span></h2>
+    </div>
+    <div class="skill-grid">
+      <div class="skill-col rv">
+        <h3><span>01</span>Languages</h3>
+        <ul><li>Python</li><li>JavaScript</li><li>SQL</li></ul>
+      </div>
+      <div class="skill-col rv">
+        <h3><span>02</span>Backend</h3>
+        <ul><li>Django</li><li>Django REST Framework</li><li>REST API Design</li><li>Auth &amp; Authorization</li><li>API Integration &amp; Webhooks</li></ul>
+      </div>
+      <div class="skill-col rv">
+        <h3><span>03</span>Database &amp; Caching</h3>
+        <ul><li>PostgreSQL</li><li>MySQL</li><li>Redis</li></ul>
+      </div>
+      <div class="skill-col rv">
+        <h3><span>04</span>DevOps &amp; Tools</h3>
+        <ul><li>Docker</li><li>Git &amp; GitHub</li><li>Linux</li><li>Postman</li></ul>
+      </div>
+      <div class="skill-col rv">
+        <h3><span>05</span>Testing</h3>
+        <ul><li>Unit Testing</li><li>Functional Testing</li><li>Pytest</li><li>Playwright Basics</li></ul>
+      </div>
+      <div class="skill-col rv">
+        <h3><span>06</span>Concepts</h3>
+        <ul><li>OOP</li><li>Data Structures</li><li>SOLID Principles</li><li>Design Patterns</li><li>System Design Basics</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WORK ================= -->
+<section id="work">
+  <div class="wrap">
+    <div class="work-head rv">
+      <div>
+        <span class="pill"><span class="ast">✳</span> Portfolio</span>
+        <h2 class="h-giant">My <span class="dim">projects.</span></h2>
+      </div>
+      <p class="impact-side">Professional and personal builds — real systems shipped with real constraints.</p>
+    </div>
+
+    <!-- Project 01 -->
+    <article class="project rv">
+      <div class="side">
+        <span class="ghost-num" aria-hidden="true">01</span>
+        <div>
+          <p class="ptag">✳ Professional work — /E-commerce Platform</p>
+          <h3>QuickSync</h3>
+          <p>A centralized e-commerce integration platform connecting multiple online stores into one system — products, inventory, orders and synchronization across every sales channel.</p>
+        </div>
+        <div class="stack">
+          <span>Shopify</span><span>Amazon</span><span>Etsy</span><span>WooCommerce</span><span>Wix</span>
+        </div>
+      </div>
+      <div class="body">
+        <h4>My contributions</h4>
+        <ul>
+          <li>Developed backend features with Python, Django and DRF</li>
+          <li>Designed and maintained REST APIs</li>
+          <li>Implemented product synchronization workflows</li>
+          <li>Integrated third-party APIs and webhook communication</li>
+          <li>Improved database queries and backend performance</li>
+          <li>Async processing with Redis queues + unit &amp; functional tests</li>
+        </ul>
+        <div class="chips">
+          <span>Python</span><span>Django</span><span>DRF</span><span>PostgreSQL</span><span>Redis</span><span>Docker</span><span>REST APIs</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Project 02 -->
+    <article class="project alt rv">
+      <div class="side">
+        <span class="ghost-num" aria-hidden="true">02</span>
+        <div>
+          <p class="ptag">✳ Personal project — /HR Platform</p>
+          <h3>Rivon HRM</h3>
+          <p>A human resource management platform designed to simplify employee and organization workflows, built API-first and fully dockerized.</p>
+        </div>
+        <div class="stack">
+          <span>API-first</span><span>Dockerized</span><span>Role-based</span>
+        </div>
+      </div>
+      <div class="body">
+        <h4>Features</h4>
+        <ul>
+          <li>Employee management</li>
+          <li>Authentication system</li>
+          <li>Role-based access control</li>
+          <li>Leave approval workflow</li>
+          <li>REST API architecture</li>
+        </ul>
+        <div class="chips">
+          <span>Python</span><span>DRF</span><span>PostgreSQL</span><span>Redis</span><span>Docker</span><span>Next.js</span>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================= INTERESTS ================= -->
+<section class="interests">
+  <div class="ghost2" aria-hidden="true">Two wheels</div>
+  <div class="wrap">
+    <div class="rv">
+      <span class="pill"><span class="ast">✳</span> Away from the keyboard.</span>
+    </div>
+    <div class="int-grid">
+      <div class="rv">
+        <h3>Bike<br>travelling</h3>
+        <p>When I'm away from coding, I love exploring new places on my bike. Long rides help me experience different places, meet new people, and discover new perspectives — finding new routes and exploring the world on two wheels.</p>
+      </div>
+      <ul class="int-list rv">
+        <li>Motorcycle touring</li>
+        <li>Exploring new places</li>
+        <li>Learning new technologies</li>
+        <li>Building side projects</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EXPLORING ================= -->
+<section class="exploring">
+  <div class="wrap">
+    <div class="rv">
+      <span class="pill"><span class="ast">✳</span> Currently exploring</span>
+      <h2 class="h-giant">What's <span class="dim">next</span></h2>
+    </div>
+    <div class="row rv">
+      <span>Advanced Django</span>
+      <span>System Design</span>
+      <span>Microservices</span>
+      <span>Cloud Technologies</span>
+      <span>DevOps Practices</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="top rv">
+      <div>
+        <p class="mono-note" style="font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#57534D;margin-bottom:14px">Rovin®</p>
+        <h2 class="h-giant" style="margin-top:0">Contact me</h2>
+      </div>
+      <p class="mono-note">©2026 [Scroll to explore]</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="rv">
+        <span class="pill"><span class="ast">✳</span> Ready to start?</span>
+        <h3>Get in<br>touch</h3>
+        <a class="btn btn-bar" href="mailto:rovinrk12@gmail.com">Book a call <span class="sq">↗</span></a>
+      </div>
+      <div class="info-cards rv">
+        <div class="info-card">
+          <small>Email:</small>
+          <b><a href="mailto:rovinrk12@gmail.com">rovinrk12@gmail.com</a></b>
+        </div>
+        <div class="info-card">
+          <small>LinkedIn:</small>
+          <b><a href="https://www.linkedin.com/in/rovin-rk-672092414/" target="_blank" rel="noopener">/in/rovin-rk</a></b>
+        </div>
+        <div class="info-card">
+          <small>GitHub:</small>
+          <b><a href="https://github.com/your-handle" target="_blank" rel="noopener">github.com/your-handle</a></b>
+        </div>
+        <div class="info-card">
+          <small>Location:</small>
+          <b>Bangalore, India</b>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <p class="foot-name">Rovin<sup>®</sup></p>
+      <div class="foot-cols">
+        <div>
+          <h5>Navigation</h5>
+          <ul>
+            <li><a href="#top">Home</a></li>
+            <li><a href="#about">About me</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Socials</h5>
+          <ul class="soc">
+            <li><a href="https://github.com/your-handle" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/rovin-rk-672092414/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="mailto:rovinrk12@gmail.com">Email</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© <span id="year2">2026</span> Rovin — Python backend developer</p>
+      <p>Built with Django energy ✳ Bangalore, India</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
