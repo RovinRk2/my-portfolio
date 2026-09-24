@@ -5,6 +5,7 @@ import DailyLoop from './DailyLoop.jsx';
 import LiveValidator from './LiveValidator.jsx';
 import DeveloperFeed from './DeveloperFeed.jsx';
 import LayersIntro from './LayersIntro.jsx';
+import { TechIcon } from './TechIcon.jsx';
 import {
   Cursor,
   useActiveSection,
@@ -12,7 +13,6 @@ import {
   useReveal,
   useScrollProgress,
   useSmoothScroll,
-  prefersReducedMotion,
 } from './hooks.jsx';
 
 const email = 'rovinrk12@gmail.com';
@@ -23,7 +23,7 @@ const whatsapp = `https://wa.me/919345409964?text=${encodeURIComponent('Hi Rovin
 const mailto = `mailto:${email}?subject=${encodeURIComponent('Let’s build something')}`;
 
 const NAV = [
-  { id: 'work', label: 'Work' },
+  { id: 'projects', label: 'Projects' },
   { id: 'experience', label: 'Experience' },
   { id: 'skills', label: 'Skills' },
   { id: 'feed', label: 'Dev Feed' },
@@ -52,11 +52,11 @@ const services = [
 ];
 
 const skillGroups = [
-  ['Backend', 'Python • Django • Django REST Framework • REST APIs • OAuth • Webhooks'],
-  ['Frontend', 'HTML5 • CSS3 • Bootstrap • JavaScript'],
-  ['Database', 'PostgreSQL • SQL • Django ORM'],
-  ['Tools & Development', 'Git • GitHub • Postman • Docker • Linux • Ruff'],
-  ['Core Expertise', 'API Integration • Data Validation • Data Synchronization • Third-Party Integrations • Authentication & Authorization • Debugging • Error Handling • Unit & Regression Testing'],
+  ['Backend', ['Python', 'Django', 'Django REST Framework', 'REST APIs', 'OAuth', 'Webhooks']],
+  ['Frontend', ['HTML5', 'CSS3', 'Bootstrap', 'JavaScript']],
+  ['Database', ['PostgreSQL', 'SQL', 'Django ORM']],
+  ['Tools', ['Git', 'GitHub', 'Postman', 'Docker', 'Linux']],
+  ['Core Expertise', ['API Integration', 'Data Validation', 'Data Synchronization', 'Third-Party Integrations', 'Authentication & Authorization', 'Debugging', 'Error Handling', 'Unit Testing', 'Regression Testing']],
 ];
 
 const marquee = ['Python', 'Django', 'Django REST Framework', 'PostgreSQL', 'Redis', 'Docker', 'REST APIs', 'Webhooks', 'OAuth', 'Git', 'Linux', 'Postman'];
@@ -72,37 +72,26 @@ const projects = [
     id: 'quicksync',
     name: 'QuickSync',
     kind: 'E-commerce integration platform',
-    tone: 'amber',
-    cta: 'Explore my contributions',
-    body: 'Professional backend work connecting Shopify, Amazon, Etsy, WooCommerce and Wix. Developed REST APIs, product synchronization, third-party webhooks, optimized database queries and asynchronous processing with Redis queues.',
-    tags: ['Python', 'Django', 'PostgreSQL', 'Redis'],
+    context: 'Professional work',
+    problem: 'Merchants selling on several marketplaces need products, stock and orders to stay consistent across every channel, without manual copying.',
+    contribution: 'Backend development on the integrations that connect the platform to Shopify, Amazon, Etsy, WooCommerce and Wix.',
+    work: ['REST APIs for products and orders', 'Product and inventory synchronization', 'Third-party webhooks', 'Optimized database queries', 'Asynchronous processing with Redis queues'],
+    tags: ['Python', 'Django', 'PostgreSQL', 'Redis', 'REST APIs'],
   },
   {
     id: 'rivon',
     name: 'Rivon HRM',
     kind: 'People & organization management',
-    tone: 'sage',
-    cta: 'Explore the project',
-    body: 'A personal, API-first HR platform for employee management, authentication, role-based access and leave approvals. Built with Django REST Framework, PostgreSQL, Redis and Docker.',
-    tags: ['DRF', 'Docker', 'REST APIs', 'PostgreSQL'],
+    context: 'Personal project',
+    problem: 'Small teams need one simple place for employee records, access control and leave approvals.',
+    contribution: 'Designed and built the API-first backend end to end.',
+    work: ['Employee management APIs', 'Authentication', 'Role-based access control', 'Leave request and approval workflow', 'Containerised with Docker'],
+    tags: ['Django REST Framework', 'PostgreSQL', 'Redis', 'Docker'],
+    links: [{ label: 'GitHub', href: github }],
   },
 ];
 
 /* ------------------------------------------------------------------ */
-
-function RotatingWord({ words }) {
-  const [i, setI] = useState(0);
-  useEffect(() => {
-    if (prefersReducedMotion()) return;
-    const t = setInterval(() => setI((n) => (n + 1) % words.length), 2600);
-    return () => clearInterval(t);
-  }, [words.length]);
-  return (
-    <span className="rotator" aria-live="polite">
-      <span key={i} className="rotator-word">{words[i]}</span>
-    </span>
-  );
-}
 
 function Nav() {
   const [menu, setMenu] = useState(false);
@@ -162,35 +151,6 @@ function Nav() {
   );
 }
 
-function Hero() {
-  return (
-    <section className="hero container" id="hero">
-      <div className="hero-copy">
-        <a href="#contact" className="availability" data-reveal>
-          <i className="dot-live" /> Available for freelance projects <span>→</span>
-        </a>
-        <p className="eyebrow" data-reveal style={{ '--d': '80ms' }}>Python backend developer · Bangalore</p>
-        <h1 data-reveal style={{ '--d': '140ms' }}>
-          Behind every great idea.
-          <span className="grad">A reliable backend.</span>
-        </h1>
-        <p className="lead" data-reveal style={{ '--d': '220ms' }}>
-          I’m Rovin. I <RotatingWord words={['build clean APIs', 'connect platforms', 'validate messy data', 'ship dependable Django apps']} /> — turning complex data into
-          applications you can rely on.
-        </p>
-        <div className="actions" data-reveal style={{ '--d': '300ms' }}>
-          <a className="button primary magnetic" href="#contact">Let’s build something <Arrow /></a>
-          <a className="button ghost magnetic" href="#work">Explore my work <span aria-hidden="true">↓</span></a>
-        </div>
-      </div>
-      <div className="hero-visual" data-reveal style={{ '--d': '200ms' }}>
-        <DailyLoop />
-      </div>
-      <a href="#work" className="scroll-cue" aria-label="Scroll to work"><span /></a>
-    </section>
-  );
-}
-
 function Marquee() {
   const row = [...marquee, ...marquee];
   return (
@@ -204,86 +164,61 @@ function Marquee() {
   );
 }
 
-function Preview({ kind }) {
-  if (kind === 'quicksync') {
-    return (
-      <div className="mock sync">
-        <div className="mock-nav"><b>✳ QuickSync</b><span>Overview · Products · Orders</span><i>RK</i></div>
-        <div className="mock-content">
-          <span className="mock-eyebrow">YOUR COMMERCE, CONNECTED</span>
-          <h3>Everything in sync.</h3>
-          <p>One workspace. Every sales channel.</p>
-          <div className="channels"><span>Shopify</span><span>amazon</span><span>Etsy</span></div>
-          <svg className="sync-lines" viewBox="0 0 300 60" aria-hidden="true">
-            <path d="M60 0 C60 30 150 20 150 50 M150 0 V50 M240 0 C240 30 150 20 150 50" />
-          </svg>
-          <div className="sync-hub">✳</div>
-        </div>
-      </div>
-    );
-  }
+function ProjectRow({ p, i }) {
+  const [open, setOpen] = useState(i === 0);
   return (
-    <div className="mock hr">
-      <div className="hr-sidebar"><b>r.</b><span /><span /><span /><span /></div>
-      <div className="hr-main">
-        <div className="mock-nav"><b>Workspace</b><i>RK</i></div>
-        <span className="mock-eyebrow">A LITTLE MORE HUMAN</span>
-        <h3>People come first.</h3>
-        <p>A simpler way to manage your team.</p>
-        <div className="hr-stats">
-          <div><small>People</small><strong>Team directory</strong></div>
-          <div><small>Time off</small><strong>Leave requests</strong></div>
-        </div>
-        <div className="people"><span>JD</span><span>AM</span><span>SK</span><b>Built around your people</b></div>
-      </div>
-    </div>
-  );
-}
-
-function ProjectCard({ p, i }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <article className={`project ${open ? 'open' : ''}`} data-reveal style={{ '--d': `${i * 120}ms` }}>
-      <button className={`project-visual tilt tone-${p.tone}`} onClick={() => setOpen(!open)} aria-expanded={open} aria-controls={`${p.id}-details`} aria-label={`${p.name}: ${p.cta}`}>
-        <span className="visual-glare" aria-hidden="true" />
-        <Preview kind={p.id} />
-        <span className="concept">Illustrative preview</span>
-      </button>
-      <div className="project-title">
-        <div>
-          <h3>{p.name}</h3>
-          <p>{p.kind}</p>
-        </div>
-        <button className="round-btn" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls={`${p.id}-details`} aria-label={p.cta}>
-          <span aria-hidden="true">+</span>
-        </button>
-      </div>
-      <button className="project-toggle" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls={`${p.id}-details`}>
-        {p.cta} <span aria-hidden="true">{open ? '−' : '+'}</span>
+    <li className={`project-row ${open ? 'open' : ''}`} data-reveal style={{ '--d': `${i * 100}ms` }}>
+      <button className="row-head" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls={`${p.id}-details`}>
+        <span className="row-no">{String(i + 1).padStart(2, '0')}</span>
+        <span className="row-name">{p.name}</span>
+        <span className="row-kind">{p.kind}<small>{p.context}</small></span>
+        <span className="row-stack">{p.tags.join(' · ')}</span>
+        <span className="row-toggle" aria-hidden="true"><span>+</span></span>
       </button>
       <div className="collapse" id={`${p.id}-details`}>
         <div>
-          <p>{p.body}</p>
-          <div className="tags">{p.tags.map((t) => <span key={t}>{t}</span>)}</div>
+          <div className="row-body">
+            <div className="row-col">
+              <h4>Problem</h4>
+              <p>{p.problem}</p>
+              <h4>My contribution</h4>
+              <p>{p.contribution}</p>
+            </div>
+            <div className="row-col">
+              <h4>Technical work</h4>
+              <ul className="row-work">{p.work.map((w) => <li key={w}>{w}</li>)}</ul>
+            </div>
+            <div className="row-col">
+              <h4>Tech stack</h4>
+              <div className="tags">{p.tags.map((t) => <span key={t}>{t}</span>)}</div>
+              {p.links && (
+                <div className="row-links">
+                  {p.links.map((l) => (
+                    <a key={l.label} className="link-underline" href={l.href} target="_blank" rel="noreferrer">{l.label} <Arrow /></a>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
-    </article>
+    </li>
   );
 }
 
 function Work() {
   return (
-    <section className="section container" id="work">
+    <section className="section container" id="projects">
       <div className="section-heading" data-reveal>
         <div>
-          <p className="eyebrow">Selected work</p>
+          <p className="eyebrow">Selected projects</p>
           <h2>Ideas into<br /><span>real-world products.</span></h2>
         </div>
-        <p>Tap a project to see what I built behind the interface.</p>
+        <p>What each project needed, what I built, and the stack behind it.</p>
       </div>
-      <div className="project-grid">
-        {projects.map((p, i) => <ProjectCard key={p.id} p={p} i={i} />)}
-      </div>
+      <ol className="project-list">
+        {projects.map((p, i) => <ProjectRow key={p.id} p={p} i={i} />)}
+      </ol>
     </section>
   );
 }
@@ -339,11 +274,11 @@ function Skills() {
               <h3>{title}</h3>
               <span>0{i + 1}</span>
             </div>
-            <div className="chips">
-              {items.split(' • ').map((item, j) => (
-                <span key={item} style={{ '--i': j }}>{item}</span>
+            <ul className="chips">
+              {items.map((item, j) => (
+                <li key={item} style={{ '--i': j }}><TechIcon name={item} />{item}</li>
               ))}
-            </div>
+            </ul>
           </article>
         ))}
       </div>
@@ -418,7 +353,7 @@ function About() {
       <div className="about-copy" data-reveal style={{ '--d': '120ms' }}>
         <p className="eyebrow">Hello, I’m Rovin</p>
         <h2>A builder at heart.<br /><span>A partner in your idea.</span></h2>
-        <p>I’m a Python backend developer based in Bangalore, India. I build reliable APIs, validate data, and connect third-party platforms to keep applications working smoothly.</p>
+        <p>I’m a Python backend developer based in Kanyakumari, Tamil Nadu, India. I build reliable APIs, validate data, and connect third-party platforms to keep applications working smoothly.</p>
         <p>My foundation is Python, Django and clean API architecture. I care about the details: maintainable code, dependable integrations and a great experience for the people who use what we build.</p>
         <div className="about-links">
           <a className="pill-link magnetic" href={github} target="_blank" rel="noreferrer">GitHub <Arrow /></a>
@@ -433,52 +368,75 @@ function About() {
 function Gallery() {
   const photos = ['bike-travel.jpeg', ...Array.from({ length: 8 }, (_, i) => `image${i + 1}.jpeg`)];
   const [i, setI] = useState(0);
+  const [seen, setSeen] = useState(() => new Set([0, 1]));
   const startX = useRef(null);
   const go = (d) => setI((n) => (n + d + photos.length) % photos.length);
 
+  // only load the current photo and its neighbours, instead of all nine up front
+  useEffect(() => {
+    setSeen((prev) => {
+      const next = new Set(prev);
+      [i, (i + 1) % photos.length, (i - 1 + photos.length) % photos.length].forEach((n) => next.add(n));
+      return next.size === prev.size ? prev : next;
+    });
+  }, [i, photos.length]);
+
   return (
-    <section className="personal container" data-reveal>
-      <div className="personal-copy">
-        <span className="eyebrow">Beyond the screen</span>
-        <h3>New roads.<br />New perspectives.</h3>
-        <p>When I’m not building, you’ll find me exploring on two wheels.</p>
-        <div className="gallery-controls">
-          <button className="round-btn" onClick={() => go(-1)} aria-label="Previous photo">←</button>
-          <span aria-live="polite">{String(i + 1).padStart(2, '0')} / {String(photos.length).padStart(2, '0')}</span>
-          <button className="round-btn" onClick={() => go(1)} aria-label="Next photo">→</button>
+    <section className="section container beyond" id="beyond">
+      <div className="section-heading" data-reveal>
+        <div>
+          <p className="eyebrow">Beyond the screen</p>
+          <h2>Code. Gym. Coffee.<br /><span>New roads.</span></h2>
         </div>
+        <p>When I’m not building, you’ll find me lifting, refuelling, or exploring on two wheels.</p>
       </div>
-      <div
-        className="gallery"
-        tabIndex={0}
-        aria-roledescription="carousel"
-        aria-label="Motorcycle travel photos"
-        onKeyDown={(e) => {
-          if (e.key === 'ArrowRight') go(1);
-          if (e.key === 'ArrowLeft') go(-1);
-        }}
-        onPointerDown={(e) => (startX.current = e.clientX)}
-        onPointerUp={(e) => {
-          if (startX.current == null) return;
-          const dx = e.clientX - startX.current;
-          if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
-          startX.current = null;
-        }}
-      >
-        {photos.map((src, n) => (
-          <img
-            key={src}
-            src={`/images/${src}`}
-            alt={`Motorcycle travels — photo ${n + 1}`}
-            loading="lazy"
-            draggable="false"
-            className={n === i ? 'current' : ''}
-          />
-        ))}
-        <div className="dots">
-          {photos.map((_, n) => (
-            <button key={n} className={n === i ? 'on' : ''} onClick={() => setI(n)} aria-label={`Show photo ${n + 1}`} />
-          ))}
+      <div className="beyond-grid">
+        <div data-reveal>
+          <DailyLoop />
+        </div>
+        <div className="personal" data-reveal style={{ '--d': '100ms' }}>
+          <div
+            className="gallery"
+            tabIndex={0}
+            aria-roledescription="carousel"
+            aria-label="Motorcycle travel photos. Use the arrow keys to browse."
+            onKeyDown={(e) => {
+              if (e.key === 'ArrowRight') go(1);
+              if (e.key === 'ArrowLeft') go(-1);
+            }}
+            onPointerDown={(e) => (startX.current = e.clientX)}
+            onPointerUp={(e) => {
+              if (startX.current == null) return;
+              const dx = e.clientX - startX.current;
+              if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+              startX.current = null;
+            }}
+          >
+            {photos.map((src, n) =>
+              seen.has(n) ? (
+                <img
+                  key={src}
+                  src={`/images/${src}`}
+                  alt={`Motorcycle travels, photo ${n + 1} of ${photos.length}`}
+                  loading="lazy"
+                  decoding="async"
+                  draggable="false"
+                  className={n === i ? 'current' : ''}
+                />
+              ) : null
+            )}
+            <div className="dots">
+              {photos.map((_, n) => (
+                <button key={n} className={n === i ? 'on' : ''} onClick={() => setI(n)} aria-label={`Show photo ${n + 1}`} aria-current={n === i ? 'true' : undefined} />
+              ))}
+            </div>
+          </div>
+          <div className="gallery-controls">
+            <span className="gallery-caption">On the road</span>
+            <button className="round-btn" onClick={() => go(-1)} aria-label="Previous photo">←</button>
+            <span aria-live="polite">{String(i + 1).padStart(2, '0')} / {String(photos.length).padStart(2, '0')}</span>
+            <button className="round-btn" onClick={() => go(1)} aria-label="Next photo">→</button>
+          </div>
         </div>
       </div>
     </section>
@@ -584,7 +542,6 @@ function App() {
       <Nav />
       <main id="main">
         <LayersIntro />
-        <Hero />
         <Marquee />
         <Work />
         <Experience />

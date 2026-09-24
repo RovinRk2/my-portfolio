@@ -93,7 +93,7 @@ function CodeScene() {
       <rect x="228" y="92" width="112" height="72" rx="7" fill="#15191f" stroke="#4d4033" strokeWidth="2" />
       <g className="code-lines">
         <rect x="239" y="104" width="44" height="5" rx="2" fill="#cbb2ef" />
-        <rect x="246" y="116" width="70" height="5" rx="2" fill="#eac18e" />
+        <rect x="246" y="116" width="70" height="5" rx="2" fill="#d9b27c" />
         <rect x="246" y="128" width="52" height="5" rx="2" fill="#8fb8c9" />
         <rect x="239" y="140" width="62" height="5" rx="2" fill="#9fd6a8" />
         <rect x="239" y="152" width="30" height="5" rx="2" fill="#6b7682" />
@@ -140,10 +140,10 @@ function GymScene({ reps }) {
       {/* barbell */}
       <g className="barbell">
         <rect x="104" y="126" width="192" height="5" rx="2" fill="#9a9aa3" />
-        <rect x="106" y="110" width="12" height="37" rx="2" fill="#e4a960" />
-        <rect x="119" y="115" width="7" height="27" rx="2" fill="#b77641" />
-        <rect x="282" y="110" width="12" height="37" rx="2" fill="#e4a960" />
-        <rect x="274" y="115" width="7" height="27" rx="2" fill="#b77641" />
+        <rect x="106" y="110" width="12" height="37" rx="2" fill="#d9b27c" />
+        <rect x="119" y="115" width="7" height="27" rx="2" fill="#a8875a" />
+        <rect x="282" y="110" width="12" height="37" rx="2" fill="#d9b27c" />
+        <rect x="274" y="115" width="7" height="27" rx="2" fill="#a8875a" />
         <circle cx="160" cy="129" r="7" fill={SKIN} />
         <circle cx="240" cy="129" r="7" fill={SKIN} />
       </g>
@@ -173,7 +173,7 @@ function CoffeeScene() {
         <g className="sip-mug">
           <circle cx="231" cy="196" r="6.5" fill={SKIN} />
           <rect x="222" y="186" width="19" height="21" rx="3" fill="#e9dccb" />
-          <rect x="222" y="190" width="19" height="4" fill="#b77641" />
+          <rect x="222" y="190" width="19" height="4" fill="#a8875a" />
           <path d="M241 190 q8 0 8 7 t-8 7" fill="none" stroke="#e9dccb" strokeWidth="3" />
           <path className="steam s1" d="M227 181 q-4 -6 0 -12 t0 -12" />
           <path className="steam s2" d="M235 181 q-4 -6 0 -12 t0 -12" />

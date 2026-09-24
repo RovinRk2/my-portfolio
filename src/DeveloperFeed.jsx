@@ -18,7 +18,7 @@ const TOPICS = [
   { tag: 'Open Source', query: 'open source' },
   { tag: 'System Design', query: 'distributed systems' },
 ];
-const MAX_ITEMS = 6;
+const MAX_ITEMS = 4;
 const WINDOW_DAYS = 21;
 const MIN_POINTS = 15;
 const CACHE_KEY = 'dev-feed-v1';

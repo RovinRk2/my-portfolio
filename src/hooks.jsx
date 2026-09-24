@@ -95,7 +95,7 @@ export function usePointerEffects() {
         const r = mag.getBoundingClientRect();
         const x = e.clientX - (r.left + r.width / 2);
         const y = e.clientY - (r.top + r.height / 2);
-        mag.style.transform = `translate(${x * 0.22}px, ${y * 0.3}px)`;
+        mag.style.transform = `translate(${x * 0.12}px, ${y * 0.16}px)`;
       }
 
       const tilt = t.closest('.tilt');
@@ -103,8 +103,8 @@ export function usePointerEffects() {
         const r = tilt.getBoundingClientRect();
         const px = (e.clientX - r.left) / r.width;
         const py = (e.clientY - r.top) / r.height;
-        tilt.style.setProperty('--rx', `${(0.5 - py) * 8}deg`);
-        tilt.style.setProperty('--ry', `${(px - 0.5) * 10}deg`);
+        tilt.style.setProperty('--rx', `${(0.5 - py) * 3}deg`);
+        tilt.style.setProperty('--ry', `${(px - 0.5) * 4}deg`);
         tilt.style.setProperty('--gx', `${px * 100}%`);
         tilt.style.setProperty('--gy', `${py * 100}%`);
       }
