@@ -6,7 +6,8 @@ import { prefersReducedMotion } from './hooks.jsx';
  * The top layer is a live API request trace ("what happens behind the screen").
  * On desktop, scrolling peels the stack apart in CSS 3D to show the layers a
  * request moves through: Interface → API → Validation → PostgreSQL.
- * On mobile (and with reduced motion) nothing is pinned — it's a normal section.
+ * On mobile only the stack is pinned (the copy scrolls normally above it); with
+ * reduced motion nothing is pinned — it's a normal section.
  */
 
 const github = 'https://github.com/RovinRk2';
@@ -139,8 +140,10 @@ function Plate({ layer }) {
 
 export default function LayersIntro() {
   const ref = useRef(null);
+  const trackRef = useRef(null);
   const [active, setActive] = useState(-1);
-  const [mode, setMode] = useState('pinned'); // 'pinned' | 'static' (reduced motion) | 'flat' (mobile)
+  // 'pinned' (desktop) | 'mobile' (only the stack is pinned) | 'static' | 'flat' (reduced motion)
+  const [mode, setMode] = useState('pinned');
 
   useEffect(() => {
     const el = ref.current;
@@ -148,10 +151,11 @@ export default function LayersIntro() {
     const mobile = window.matchMedia('(max-width: 1024px)');
     let raf = 0;
     let lastActive = -2;
+    let target = el;
 
     const update = () => {
       raf = 0;
-      const r = el.getBoundingClientRect();
+      const r = target.getBoundingClientRect();
       const total = r.height - window.innerHeight;
       const p = total > 0 ? clamp(-r.top / total) : 0;
       el.style.setProperty('--tilt', ease(seg(p, 0.04, 0.38)).toFixed(4));
@@ -166,9 +170,9 @@ export default function LayersIntro() {
     const apply = () => {
       window.removeEventListener('scroll', onScroll);
       ['--tilt', '--spread', '--reveal', '--exit'].forEach((v) => el.style.removeProperty(v));
-      if (mobile.matches) { setMode('flat'); setActive(3); return; }
-      if (prefersReducedMotion()) { setMode('static'); setActive(3); return; }
-      setMode('pinned');
+      if (prefersReducedMotion()) { setMode(mobile.matches ? 'flat' : 'static'); setActive(3); return; }
+      target = mobile.matches && trackRef.current ? trackRef.current : el;
+      setMode(mobile.matches ? 'mobile' : 'pinned');
       lastActive = -2;
       update();
       window.addEventListener('scroll', onScroll, { passive: true });
@@ -218,22 +222,32 @@ export default function LayersIntro() {
             </ol>
           </div>
 
-          <div className="li-stage-wrap" aria-hidden="true">
-            <div className="li-stage">
-              <div className="li-shadow" />
-              {[...FLOW].reverse().map((l) => {
-                const idx = FLOW.indexOf(l);
-                return (
-                  <div
-                    key={l.key}
-                    className={`li-layer layer-${l.key} ${active >= idx ? 'lit' : ''}`}
-                    style={{ '--depth': FLOW.length - 1 - idx }}
-                  >
-                    <Plate layer={l.key} />
-                  </div>
-                );
-              })}
-              <div className="li-packets"><i /><i /><i /></div>
+          <div className="li-stage-track" ref={trackRef} aria-hidden="true">
+            <div className="li-stage-wrap">
+              <div className="li-stage">
+                <div className="li-shadow" />
+                {[...FLOW].reverse().map((l) => {
+                  const idx = FLOW.indexOf(l);
+                  return (
+                    <div
+                      key={l.key}
+                      className={`li-layer layer-${l.key} ${active >= idx ? 'lit' : ''}`}
+                      style={{ '--depth': FLOW.length - 1 - idx }}
+                    >
+                      <Plate layer={l.key} />
+                    </div>
+                  );
+                })}
+                <div className="li-packets"><i /><i /><i /></div>
+              </div>
+              {/* mobile: the flow list has scrolled away, so name the current layer here */}
+              <p className="li-caption">
+                {FLOW.map((l, i) => (
+                  <span key={l.key} className={active === i || (active < 0 && i === 0) ? 'on' : ''}>
+                    <em>{l.no}</em> <b>{l.name}</b> {l.note}
+                  </span>
+                ))}
+              </p>
             </div>
           </div>
         </div>

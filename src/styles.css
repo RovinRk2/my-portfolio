@@ -702,6 +702,12 @@ footer .logo { font-size: 20px; color: var(--text); }
 .li-text small { font-size: 14px; line-height: 1.5; color: var(--text-2); }
 
 /* 3D stage */
+.li-stage-track { height: 100%; min-width: 0; }
+.li-caption { display: none; margin: 0; width: min(100%, 400px); min-height: 3.2em; font-size: 14px; line-height: 1.5; color: var(--text-2); text-align: center; }
+.li-caption span { grid-area: 1 / 1; opacity: 0; translate: 0 6px; transition: opacity var(--t) var(--ease), translate var(--t) var(--ease); }
+.li-caption span.on { opacity: 1; translate: 0 0; }
+.li-caption em { font: normal 12px ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--accent); }
+.li-caption b { color: var(--text); font-weight: 600; margin-right: 4px; }
 .li-stage-wrap { display: grid; place-items: center; height: 100%; perspective: 1800px; perspective-origin: 50% 40%; }
 .li-stage-wrap > .li-stage { translate: 0 calc(var(--spread) * var(--gap) * .3); }
 .li-stage {
@@ -807,21 +813,43 @@ footer .logo { font-size: 20px; color: var(--text); }
 .layers-intro.is-static .li-stage-wrap { min-height: 620px; }
 .layers-intro.is-static .li-hint { display: none; }
 
-/* tablet & mobile: no pinning, flat request trace below the copy */
+/* tablet & mobile: the copy scrolls normally; only the stack below it is pinned */
 @media (max-width: 1024px) {
-  .layers-intro, .layers-intro.is-flat { --w: min(520px, calc(100vw - 40px)); height: auto; }
+  .layers-intro { height: auto; }
   .li-sticky { position: relative; height: auto; overflow: visible; }
-  .li-inner { grid-template-columns: 1fr; gap: 36px; padding: 112px 0 56px; }
+  .li-inner { grid-template-columns: minmax(0, 1fr); gap: 20px; padding: 112px 0 0; }
+  .li-copy { min-width: 0; }
   .li-title { font-size: clamp(34px, 10vw, 60px); }
-  .li-stage { font-size: min(calc(var(--w) / 28), 14px); height: auto; }
-  .li-layer.layer-ui { position: relative; }
-  .plate-trace { height: auto; }
   .li-lead { font-size: 17px; }
-  .li-stage-wrap { height: auto; perspective: none; justify-items: start; }
-  .li-stage, .li-stage-wrap > .li-stage { transform: none; translate: none; }
-  .li-layer { transform: none; }
-  .li-layer:not(.layer-ui), .li-packets, .li-shadow { display: none; }
   .li-hint { display: none; }
+  .tr-head { min-width: 0; }
+  .tr-path { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .tr-status { flex-shrink: 0; white-space: nowrap; }
+
+  /* the pinned stack: a tall track whose scroll progress drives --tilt / --spread */
+  .layers-intro.is-mobile {
+    --w: min(400px, calc((100vw - 40px) * .86));
+    --h: calc(var(--w) * .72);
+    --gap: calc(var(--w) * .24);
+  }
+  .is-mobile .li-stage-track { height: 240vh; height: 240svh; overflow-x: clip; }
+  .is-mobile .li-stage-wrap {
+    position: sticky; top: 0; height: 100vh; height: 100svh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+    padding-top: 40px; perspective: 1400px;
+  }
+  .is-mobile .li-stage { font-size: calc(var(--w) / 30); }
+  .is-mobile .li-stage-wrap > .li-stage { translate: 0 calc(var(--spread) * var(--gap) * .6); }
+  .is-mobile .li-caption { display: grid; }
+
+  /* reduced motion: just the flat request trace below the copy */
+  .layers-intro.is-flat .li-inner { padding-bottom: 56px; }
+  .is-flat .li-stage-wrap { display: block; width: 100%; max-width: 520px; height: auto; perspective: none; container-type: inline-size; }
+  .is-flat .li-stage { width: 100%; height: auto; font-size: min(calc(100cqi / 28), 14px); }
+  .is-flat .li-stage, .is-flat .li-stage-wrap > .li-stage, .is-flat .li-layer { transform: none; translate: none; }
+  .is-flat .li-layer.layer-ui { position: relative; }
+  .is-flat .plate-trace { height: auto; }
+  .is-flat .li-layer:not(.layer-ui), .is-flat .li-packets, .is-flat .li-shadow { display: none; }
 }
 @media (max-width: 420px) {
   .li-text b { display: block; margin: 0 0 2px; }

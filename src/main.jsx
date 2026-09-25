@@ -347,7 +347,7 @@ function About() {
   return (
     <section className="section container about" id="about">
       <div className="portrait tilt" data-reveal>
-        <img src="/images/rovin-photo.jpg" alt="Portrait of Rovin" loading="lazy" />
+        <img src="/images/rovin-portrait.jpg" alt="Portrait of Rovin" width="946" height="1182" loading="lazy" />
         <span>The person behind the pixels</span>
       </div>
       <div className="about-copy" data-reveal style={{ '--d': '120ms' }}>
